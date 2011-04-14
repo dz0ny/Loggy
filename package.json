@@ -1,15 +1,19 @@
 {
     "name": "Loggy"
-  , "version": "0.0.1"
+  , "version": "0.0.2"
   , "description": "Loggy is simple express server for remote logging with simple api and websockets."
   , "keywords": ["logging", "app"]
   , "author": "Janez Troha <janez.troha@gmail.com>"
   , "dependencies": {
-    "express": "2.2.2",
-    "now": "0.5.1",
-    "jade": "0.10.4",
-    "less": "1.0.41"
-  }
+      "express": "2.2.2",
+      "now": "0.5.1",
+      "jade": "0.10.4",
+      "less": "1.0.41"
+    }
+  , "repository": {
+    "type": "git",
+      "url": "http://github.com/dz0ny/Loggy.git"
+    }
   , "main": "index"
   , "engines": { "node": "0.4.x" }
 }
