@@ -11,12 +11,13 @@ Loggy is simple express server for remote logging with REST API and Wordpress pl
 
 ## Instalation node.js
 
-	npm install loggy
+		npm install loggy
 
   See example/server.js if you want to use cluster or 
-  	var app = require("Loggy");
-  	app.listen(3000);
-  	console.log("Loggy server listening on port %d", app.address().port);
+
+		var app = require("Loggy");
+		app.listen(3000);
+		console.log("Loggy server listening on port %d", app.address().port);
 
 ##Usage
 
