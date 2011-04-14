@@ -1,16 +1,26 @@
 
 # Loggy
 
-Loggy is simple express server for remote logging with simple api and websockets.
+Loggy is simple express server for remote logging with REST API and Wordpress plugin.
 
 ## Installation PHP
 
-  Include loggy.php in your wordpress instalation and activate the plugin. After that you can use functions $Loggy->debug(); and $Loggy->info(); in your code; 
+  Edit loggy.php to fit your needs, especially secret_key and server
+  Include loggy.php in your Wordpress installation and activate the plugin.
+  After that you can use functions $Loggy->debug(); and $Loggy->info(); in your code; 
 
 ## Instalation node.js
 
 	npm install loggy
-  See example/server.js if you want to use cluster.
+
+  See example/server.js if you want to use cluster or 
+  	var app = require("Loggy");
+  	app.listen(3000);
+  	console.log("Loggy server listening on port %d", app.address().port);
+
+##Usage
+
+  Visit localhost:3000 install bookmarklet and activate it on wordpress installation.
 
 ## API
   

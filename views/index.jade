@@ -1,5 +1,8 @@
 h1= title
-p Welcome to #{title}
+p Use bookmarklet 
+a(href="javascript:(function(){ window.location = window.location +'?Loggy=' + encodeURIComponent(prompt('Your secret_key')); })();") Activate Loggy
+p to active logging on wordpress instalation, also change secret_key in loggy.php.
+
 ul#logger
 script(type='text/javascript')
   now.ready(function(){

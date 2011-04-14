@@ -1,6 +1,8 @@
 body {
   padding: 10px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background: -webkit-gradient(linear, left bottom, left top, from(#ffffff), to(#f0f0f0)) center center no-repeat;
+  background-size: 100%;
 }
 a {
   color: #00B7FF;

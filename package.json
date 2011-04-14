@@ -1,7 +1,7 @@
 {
     "name": "Loggy"
-  , "version": "0.0.3"
-  , "description": "Loggy is simple express server for remote logging with simple api and websockets."
+  , "version": "0.0.4"
+  , "description": "Loggy is simple express server for remote logging with REST API and Wordpress plugin."
   , "keywords": ["logging", "app"]
   , "author": "Janez Troha <janez.troha@gmail.com>"
   , "dependencies": {
