@@ -1,0 +1,23 @@
+h1= title
+p Welcome to #{title}
+ul#logger
+script(type='text/javascript')
+  now.ready(function(){
+    now.InfoLog = function(stack, message, host){
+      if (message == "--MARK--") {
+        $("#logger").prepend("<li class='mark'>&nbsp;</li>");
+      }else{
+        $("#logger").prepend(message+'<li><span class="host">'+host+'</span></li>');
+      }
+    }
+
+    now.DebugLog = function(stack, message, host){
+      if (message == "--MARK--") {
+        $("#logger").prepend("<li class='mark'>&nbsp;</li>");
+      }else{
+        stack = JSON.parse(stack)[0];
+        var info =  " <code>"+ stack.line + "</code>@" + stack.file+" ";
+        $("#logger").prepend(message+'<li><span class="stack">'+info+'</span>'+'<span class="host">'+host+'</span></li>');
+      }
+    }
+  });

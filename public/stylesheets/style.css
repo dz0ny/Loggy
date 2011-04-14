@@ -1,0 +1,31 @@
+body {
+  padding: 10px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+a {
+  color: #00B7FF;
+}
+ul {
+  list-style: none;
+  background: rgba(0, 0, 0, 0.05);
+}
+ul li {
+  list-style: none;
+  padding: 0 0 10px 2px;
+}
+ul li.mark {
+  background: rgba(90, 90, 90, 0.05);
+}
+ul span.stack {
+  font-size: 9px;
+  color: gray;
+}
+ul span.stack code {
+  font-size: 11px;
+  color: green;
+  font-weight: bold;
+}
+ul span.host {
+  font-size: 9px;
+  color: red;
+}
