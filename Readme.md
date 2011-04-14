@@ -9,6 +9,8 @@ Loggy is simple express server for remote logging with simple api and websockets
 
 ## Instalation node.js
 
+  See example/server.js if you want to use cluster.
+
 ## API
   
   POST @server/v1/info #info(string) and JSON encoded trace(array)->path and trace(array)->line
