@@ -1,24 +1,30 @@
 <?php
 /*
 Plugin Name: Loggy
-Description: PHP+NODE.js logger 
+Description: Loggy is simple express server for remote logging with REST API and Wordpress plugin.
 Author: Janez Troha
-Version: 1.0
-Author URI: http://www.dz0ny.info
+Version: 1.1
+Author URI: http://github.com/dz0ny/Loggy
 */
 
 class Loggy {
 	
+	//CHANGE THIS
 	var $secret_key = "test";
+
+	//HOSTNAME AND PORT OF YOUR LOGGY SERVER
+	var $loggy_server = "localhost:3000";
 
 	function Loggy()
 	{
 		global $_GET;
-		$this->server = "localhost:3000";  
+		$this->server = $this->loggy_server;  
 		$this->new_line_on_refesh = true;  
 
 		if ($_GET["Loggy"] == $this->secret_key) {
 			setcookie(md5($this->secret_key), 1, time()+3600, SITECOOKIEPATH, COOKIE_DOMAIN, false, true);
+			$this->info("PING :)");
+			die("Secret successfully set! Check your Loggy at http://".$this->loggy_server.", debug for messages");
 		}
 	}
 	
