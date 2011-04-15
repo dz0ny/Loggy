@@ -21,12 +21,16 @@ Loggy is simple express server for remote logging with REST API and Wordpress pl
 
 ##Usage
 
-  Visit localhost:3000 install bookmarklet and activate it on wordpress installation.
+  Visit localhost:3000 install bookmarklet and activate it on wordpress installation. Them where you want to use it
+
+    global $Loggy;
+    $Loggy->debug(string..array..object);    
+    $Loggy->info(string..array..object);      
 
 ## API
   
-  POST @server/v1/info #info(string) and JSON encoded trace(array)->path and trace(array)->line
-  POST @server/v1/debug #debug(string) and JSON encoded trace(array)->path and trace(array)->line
+    POST @server/v1/info #info(string) and JSON encoded trace(array)->path and trace(array)->line
+    POST @server/v1/debug #debug(string) and JSON encoded trace(array)->path and trace(array)->line
 
 ## License 
 

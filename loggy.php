@@ -3,7 +3,7 @@
 Plugin Name: Loggy
 Description: Loggy is simple express server for remote logging with REST API and Wordpress plugin.
 Author: Janez Troha
-Version: 1.1
+Version: 1.2
 Author URI: http://github.com/dz0ny/Loggy
 */
 
@@ -15,48 +15,49 @@ class Loggy {
 	//HOSTNAME AND PORT OF YOUR LOGGY SERVER
 	var $loggy_server = "localhost:3000";
 
+	//default expiration for debug requests (default one hour)
+	var $default_expiration = 3600;
+
+	//send new line on one session(page refresh)
+	var $new_line_on_refresh = true;
+	  
 	function Loggy()
 	{
 		global $_GET;
 		$this->server = $this->loggy_server;  
-		$this->new_line_on_refesh = true;  
 
-		if ($_GET["Loggy"] == $this->secret_key) {
-			setcookie(md5($this->secret_key), 1, time()+3600, SITECOOKIEPATH, COOKIE_DOMAIN, false, true);
-			$this->info("PING :)");
-			die("Secret successfully set! Check your Loggy at http://".$this->loggy_server.", debug for messages");
+		if ($_GET["Loggy"]) {
+			if ($_GET["Loggy"] == $this->secret_key) {
+				set_transient("Loggy", $this->loggy_server, $expiration);
+				$this->info("PING :)");
+				die("Secret successfully set! Check your Loggy at http://".$this->loggy_server.", for debug messages. Loggy will stop sending messanges after ".(int)$this->default_expiration." seconds.");
+			}else{
+				$this->info("PONG :(");
+				delete_transient("Loggy");
+				die("Loggy successfully deactivated!");
+			}
 		}
 	}
 	
 	/**
-	 * Info function
+	 * Info function only sends message
 	 *
 	 * @return void
 	 * @author Janez Troha
 	 **/
 	function info($mes)
 	{
-		$trace=false;
-		if ($this->new_line_on_refesh) {
-			$this->send(__FUNCTION__, $trace, "--MARK--");
-			$this->new_line_on_refesh = false;
-		}
-		$this->send(__FUNCTION__, $trace, $mes);
+		$this->send(__FUNCTION__, false, $mes);
 	}
 	/**
-	 * Debug function
+	 * Debug function, also sends trace date
 	 *
 	 * @return void
 	 * @author Janez Troha
 	 **/
 	function debug($mes)
 	{
-		$trace=debug_backtrace(false);
-		if ($this->new_line_on_refesh) {
-			$this->send(__FUNCTION__, $trace, "--MARK--");
-			$this->new_line_on_refesh = false;
-		}
-		$this->send(__FUNCTION__, $trace, $mes);
+		$this->send(__FUNCTION__, debug_backtrace(false), $mes);
 	}
 	/**
 	 * Sends specific request to specific server, if get request contains loggy
@@ -66,9 +67,14 @@ class Loggy {
 	 **/
 	private function send($type, $trace, $mes)
 	{
-		global $_COOKIE;
 
-		if ((bool)$_COOKIE[md5($this->secret_key)]) {
+		if (false !== get_transient('Loggy') ) {
+
+			if ($this->new_line_on_refresh) {
+				$this->new_line_on_refresh = false;
+				$this->send("info", false, "--MARK--");
+			}
+
 			$url = "http://".$this->server."/1/".$type;
 			$timeout = 10;
 			
