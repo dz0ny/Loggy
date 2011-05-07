@@ -3,7 +3,7 @@
 
 Loggy is simple express server for remote logging with REST API and Wordpress plugin.
 
-## Installation PHP
+## Installation Wordpress
 
   Edit loggy.php to fit your needs, especially secret_key and server
   Include loggy.php in your Wordpress installation and activate the plugin.
@@ -21,7 +21,7 @@ Loggy is simple express server for remote logging with REST API and Wordpress pl
 
 ##Usage
 
-  Visit localhost:3000 install bookmarklet and activate it on wordpress installation. Them where you want to use it
+  Visit localhost:3000 install bookmarklet and activate it on wordpress installation. Then where you want to use it
 
     global $Loggy;
     $Loggy->debug(string..array..object);    
