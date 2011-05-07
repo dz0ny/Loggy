@@ -4,7 +4,7 @@ Donate link: http://example.com/
 Tags: debug, logging
 Requires at least: 3.0
 Tested up to: 3.1
-Stable tag: 1.1
+Stable tag: 1.2
 
 Loggy is simple express server for remote logging with REST API and Wordpress plugin.
 

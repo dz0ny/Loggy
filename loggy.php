@@ -3,7 +3,7 @@
 Plugin Name: Loggy
 Description: Loggy is simple express server for remote logging with REST API and Wordpress plugin.
 Author: Janez Troha
-Version: 1.1s
+Version: 1.2
 Author URI: http://github.com/dz0ny/Loggy
 
 (The MIT License)
