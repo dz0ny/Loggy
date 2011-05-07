@@ -1,5 +1,5 @@
 h1= title
-p Use bookmarklet <a href="javascript:(function(){ window.location = window.location +'?Loggy=' + encodeURIComponent(prompt('Your secret_key')); })();">Activate Loggy</a> to active logging on wordpress instalation, also change secret_key in loggy.php.
+p Use bookmarklet <a href="javascript:(function(){window.location=window.location+'?Loggy='+encodeURIComponent(prompt('Your%20secret_key'))+'&server=#{server_location}';})();">Activate Loggy</a> to active logging on wordpress instalation, also change secret_key to match THAT CONFIGURED IN YOUR SERVER(both nodejs and php).
 
 ul#logger
 script(type='text/javascript')

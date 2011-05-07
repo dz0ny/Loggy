@@ -1,6 +1,6 @@
 var cluster = require('cluster')
    , app = require('Loggy');
-
+ 
  cluster(app)
    .use(cluster.logger())
    .use(cluster.stats())

@@ -3,7 +3,7 @@
 Plugin Name: Loggy
 Description: Loggy is simple express server for remote logging with REST API and Wordpress plugin.
 Author: Janez Troha
-Version: 1.2
+Version: 1.3
 Author URI: http://github.com/dz0ny/Loggy
 
 (The MIT License)
@@ -20,7 +20,7 @@ THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 class Loggy {
 	
 	//CHANGE THIS
-	var $secret_key = "test";
+	var $secret_key = "mysecretkey";
 
 	//HOSTNAME AND PORT OF YOUR LOGGY SERVER
 	var $loggy_server = "localhost:3000";
@@ -34,10 +34,12 @@ class Loggy {
 	function Loggy()
 	{
 		global $_GET;
-		$this->server = $this->loggy_server;  
 
 		if ((bool)$_GET["Loggy"] && is_admin()) {
 			if ($_GET["Loggy"] == $this->secret_key) {
+				if ($_GET["server"]) {
+					$this->loggy_server = $_GET["server"];
+				}
 				set_transient("Loggy", $this->loggy_server, $expiration);
 				$this->info("PING :)");
 				die("Secret successfully set! Check your Loggy at http://".$this->loggy_server.", for debug messages. Loggy will stop sending messanges after ".(int)$this->default_expiration." seconds.");
@@ -77,15 +79,16 @@ class Loggy {
 	 **/
 	private function send($type, $trace, $mes)
 	{
+		$this->loggy_server = get_transient('Loggy');
 
-		if (false !== get_transient('Loggy') ) {
-
+		if (false !== $this->loggy_server ) {
+			
 			if ($this->new_line_on_refresh) {
 				$this->new_line_on_refresh = false;
 				$this->send("info", false, "--MARK--");
 			}
 
-			$url = "http://".$this->server."/1/".$type;
+			$url = "http://".$this->loggy_server."/1/".$type;
 			$timeout = 10;
 			
 			$options = array();
@@ -96,7 +99,7 @@ class Loggy {
 			if (!$trace) {
 				$trace = array("type"=>$type);
 			}
-			$options['body'] = "stack=".urlencode(json_encode($trace))."&info=".urlencode($mes);
+			$options['body'] = "secret_key=".urlencode($this->secret_key)."&stack=".urlencode(json_encode($trace))."&info=".urlencode($mes);
 			
 			$response = wp_remote_post( $url, $options );
 

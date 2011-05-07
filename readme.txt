@@ -4,7 +4,7 @@ Donate link: http://example.com/
 Tags: debug, logging
 Requires at least: 3.0
 Tested up to: 3.1
-Stable tag: 1.2
+Stable tag: 1.3
 
 Loggy is simple express server for remote logging with REST API and Wordpress plugin.
 
@@ -22,7 +22,7 @@ Loggy is simple express server for remote logging with REST API and Wordpress pl
 
 ##Usage
 
-  Visit localhost:3000 install bookmarklet and activate it on wordpress installation. Then where you want to use it
+  Visit localhost:3000 install bookmarklet and activate it on wordpress installation(login to it first as admin). Then where you want to use it
 
     global $Loggy;
     $Loggy->debug(string..array..object);    
